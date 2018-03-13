@@ -22,21 +22,40 @@ VOWELS_AND_CONSONANTS = VOWELS + CONSONANTS
 WORD_FORMAT_CHARACTERS = VOWELS_AND_CONSONANTS + "#%*"
 MAX_WORD_FORMAT_STRING_LENGTH = 20
 word_format_string_length = random.randint(1, MAX_WORD_FORMAT_STRING_LENGTH)
-word_format = ""
-for i in range(word_format_string_length):
-    word_format += random.choice(WORD_FORMAT_CHARACTERS)
 
-print("Generated word format string {} of length {}".format(word_format, word_format_string_length))
 
-word = ""
-for kind in word_format:
-    if kind == "#":
-        word += random.choice(VOWELS)
-    elif kind == "%":
-        word += random.choice(CONSONANTS)
-    elif kind == "*":
-        word += random.choice(VOWELS_AND_CONSONANTS)
-    else:
-        word += kind
 
-print(word)
+
+def main():
+
+    word_format = generate_random_word_format_string(word_format_string_length)
+
+    print("Generated word format string {} of length {}".format(word_format, word_format_string_length))
+
+    word = generate_word(word_format)
+
+    print(word)
+
+
+def generate_word(word_format):
+    word = ""
+    for kind in word_format:
+        if kind == "#":
+            word += random.choice(VOWELS)
+        elif kind == "%":
+            word += random.choice(CONSONANTS)
+        elif kind == "*":
+            word += random.choice(VOWELS_AND_CONSONANTS)
+        else:
+            word += kind
+    return word
+
+
+def generate_random_word_format_string(word_format_string_length):
+    word_format = ""
+    for i in range(word_format_string_length):
+        word_format += random.choice(WORD_FORMAT_CHARACTERS)
+    return word_format
+
+
+main()
