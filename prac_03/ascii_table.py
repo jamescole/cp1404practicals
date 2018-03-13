@@ -4,14 +4,14 @@ import sys
 MIN_ASCII_CODE_NUMBER = 33
 MAX_ASCII_CODE_NUMBER = 127
 
-character = raw_input("Enter a character: ").strip()
+character = input("Enter a character: ").strip()
 ascii_code = ord(character)
 print("The ASCII code for {} is {}".format(character, ascii_code))
 
 valid_number = False
 while not valid_number:
     prompt = "Enter a number between {} and {} (inclusive): ".format(MIN_ASCII_CODE_NUMBER, MAX_ASCII_CODE_NUMBER)
-    ascii_code_number = int(raw_input(prompt).strip())
+    ascii_code_number = int(input(prompt).strip())
     if MIN_ASCII_CODE_NUMBER <= ascii_code_number <= MAX_ASCII_CODE_NUMBER:
         valid_number = True
     else:
@@ -25,7 +25,7 @@ for curr_code_number in range(MIN_ASCII_CODE_NUMBER, MAX_ASCII_CODE_NUMBER + 1):
 
 print("\n\n")
 
-number_of_columns = int(raw_input("How many columns for ASCII display table? "))
+number_of_columns = int(input("How many columns for ASCII display table? "))
 number_of_ascii_codes_to_print = MAX_ASCII_CODE_NUMBER - MIN_ASCII_CODE_NUMBER
 number_of_rows = int(math.ceil(float(number_of_ascii_codes_to_print) / number_of_columns))
 curr_code_number = MIN_ASCII_CODE_NUMBER
