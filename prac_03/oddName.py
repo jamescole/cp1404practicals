@@ -7,7 +7,7 @@ James Cole
 
 def main():
     name = get_name()
-    step = 2
+    step = int(input("Enter in step value: "))
     print(get_every_nth_letter(name, step))
 
 
