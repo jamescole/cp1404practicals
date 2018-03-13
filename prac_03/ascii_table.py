@@ -32,7 +32,7 @@ curr_code_number = MIN_ASCII_CODE_NUMBER
 for table_rows in range(number_of_rows):
     for column_index in range(number_of_columns):
         if not curr_code_number > MAX_ASCII_CODE_NUMBER:
-            sys.stdout.write("{:7}  {}".format(curr_code_number, chr(curr_code_number)))
+            print("{:7}  {}".format(curr_code_number, chr(curr_code_number)), end='')
             curr_code_number += 1
     print("")
 
