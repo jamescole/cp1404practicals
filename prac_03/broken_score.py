@@ -5,7 +5,7 @@ Broken program to determine score status
 score must be between 0 and 100 inclusive; 90 or more is excellent; 50 or more is a pass; below 50 is bad
 """
 
-score = float(raw_input("Enter score: "))
+score = float(input("Enter score: "))
 if score < 0:
     print("Invalid score")
 else:
