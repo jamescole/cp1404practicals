@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 """
 CP1404/CP5632 - Practical
 Capitalist Conrad wants a stock price simulator for a volatile stock.
