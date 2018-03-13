@@ -13,7 +13,7 @@ def main():
     valid_number = False
     while not valid_number:
         prompt = "Enter a number between {} and {} (inclusive): ".format(MIN_ASCII_CODE_NUMBER, MAX_ASCII_CODE_NUMBER)
-        ascii_code_number = int(input(prompt).strip())
+        ascii_code_number = get_number(MIN_ASCII_CODE_NUMBER,MAX_ASCII_CODE_NUMBER)
         if MIN_ASCII_CODE_NUMBER <= ascii_code_number <= MAX_ASCII_CODE_NUMBER:
             valid_number = True
         else:
@@ -37,6 +37,22 @@ def main():
                 print("{:7}  {}".format(curr_code_number, chr(curr_code_number)), end='')
                 curr_code_number += 1
         print("")
+
+
+def get_number(lower,upper):
+
+    is_valid_number = False
+    prompt = "Enter a number {}-{}: ".format(lower,upper)
+    while not is_valid_number:
+        try:
+            number = int(input(prompt))
+            if lower <= number <= upper:
+                is_valid_number = True
+            else:
+                print("{} is not between {}-{}".format(number,lower,upper))
+        except ValueError:
+            print("Please enter a valid number!")
+    return number
 
 
 main()
