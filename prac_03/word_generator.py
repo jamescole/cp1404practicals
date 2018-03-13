@@ -21,21 +21,33 @@ VOWELS_AND_CONSONANTS = VOWELS + CONSONANTS
 # randomly generate the word format
 WORD_FORMAT_CHARACTERS = VOWELS_AND_CONSONANTS + "#%*"
 MAX_WORD_FORMAT_STRING_LENGTH = 20
-word_format_string_length = random.randint(1, MAX_WORD_FORMAT_STRING_LENGTH)
-
-
 
 
 def main():
 
-    word_format = generate_random_word_format_string(word_format_string_length)
+    # word_format_string_length = random.randint(1, MAX_WORD_FORMAT_STRING_LENGTH)
+    #
+    # word_format = generate_random_word_format_string(word_format_string_length)
 
-    print("Generated word format string {} of length {}".format(word_format, word_format_string_length))
+    input_prompt = "Enter word format.\n\t'#' represents any vowel\n\t'%' represents any consonant\n\t'*' represents any vowel or consonant\n\tany lowercase letter represents itself\n>>> "
+
+    word_format = input(input_prompt)
+    while not is_valid_format(word_format):
+        print("invalid word format")
+        word_format = input(input_prompt)
+
+    print("Generated word format string {} of length {}".format(word_format, len(word_format)))
 
     word = generate_word(word_format)
 
     print(word)
 
+
+def is_valid_format(word_format):
+    for letter in word_format:
+        if letter not in WORD_FORMAT_CHARACTERS:
+            return False
+    return True
 
 def generate_word(word_format):
     word = ""
