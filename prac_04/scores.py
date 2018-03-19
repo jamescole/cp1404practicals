@@ -27,7 +27,9 @@ def main():
         scores_for_subject = [score_values[student_index][subject_index] for student_index in range(len(score_values))]
         for score in scores_for_subject:
             print(score)
+        print("Min:", min(scores_for_subject))
         print("Max:", max(scores_for_subject))
+        print("Avg:", sum(scores_for_subject) / len(scores_for_subject))
         print()
 
 
