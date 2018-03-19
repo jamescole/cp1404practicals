@@ -24,13 +24,15 @@ def main():
     scores_file.close()
     for subject_index in range(len(subjects)):
         print(subjects[subject_index], "Scores:")
+        print("-------------")
         scores_for_subject = [score_values[student_index][subject_index] for student_index in range(len(score_values))]
         for score in scores_for_subject:
-            print(score)
-        print("Min:", min(scores_for_subject))
-        print("Max:", max(scores_for_subject))
-        print("Avg:", sum(scores_for_subject) / len(scores_for_subject))
-        print()
+            print("{:3}".format(score))
+        print("-------------")
+        print("Min: {:<3}".format(min(scores_for_subject)))
+        print("Max: {:<3}".format(max(scores_for_subject)))
+        print("Avg: {:<3}".format(sum(scores_for_subject) / len(scores_for_subject)))
+        print("\n")
 
 
 main()
