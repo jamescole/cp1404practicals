@@ -8,7 +8,6 @@ def main():
 def memberwise_addition(list1, list2):
     """
     Returns the list that contains the sum of elements that are in the same index in the two lists.
-    Both input lists should have same length; function assumes this is the case.
     """
     longest_list, shortest_list = [], []
     if len(list1) > len(list2):
