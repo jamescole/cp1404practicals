@@ -8,6 +8,10 @@ def main():
     date_of_births = get_date_of_births()
     print_date_of_births(date_of_births)
 
+    names = ["Jack", "Jill", "Harry"]
+    dobs = [(12, 4, 1999), (1, 1, 2000), (27, 3, 1982)]
+    print(create_dict_from_parallel_lists(names, dobs))
+
 
 def get_date_of_births():
     date_of_births = {}
@@ -24,6 +28,10 @@ def print_date_of_births(date_of_births):
     for name in date_of_births:
         dob_tuple = date_of_births[name]
         print("{} was born on {}/{}/{}".format(name, dob_tuple[DAY_POS], dob_tuple[MONTH_POS], dob_tuple[YEAR_POS]))
+
+
+def create_dict_from_parallel_lists(key_list, value_list):
+    return dict(zip(key_list, value_list))
 
 
 main()
