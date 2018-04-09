@@ -9,12 +9,6 @@ class Person:
         self.age = age
 
 
-"""
-The code generates a table formatted with the first-names, last-names, and ages of the people
-(perhaps sort the people into order based on their ages).
-"""
-
-
 def main():
     people = get_people_input()
     print_people(people)
