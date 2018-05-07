@@ -15,39 +15,35 @@ def main():
     print("Current directory is", os.getcwd())
 
     # change to desired directory
-    os.chdir('Lyrics/Christmas')
+    # os.chdir('Lyrics/Christmas')
     # print a list of all files (test)
-    print(os.listdir('.'))
+    # print(os.listdir('.'))
 
     # make a new directory
     # os.mkdir('temp')
 
-    # loop through each file in the (original) directory
-    for filename in os.listdir('.'):
-        # ignore directories, just process files
-        if not os.path.isdir(filename):
-            new_name = get_fixed_filename(filename)
+    os.chdir('Lyrics')
 
-            # NOTE: These options won't just work...
-            # they show you ways of renaming and moving files,
-            # but you need to have valid filenames. You can't make a file with
-            # a blank name, and on Windows you can't have files with the same
-            # characters but different case (e.g. a.TXT and A.txt)
-            # So, you need to get valid filenames before you can use these.
+    # rename files in all subdirectories (only going one level deep)
+    for dir_name, subdir_list, file_list in os.walk('.'):
+        for subdir in subdir_list:
+            os.chdir(subdir)
+            for x, y, subdir_file_list in os.walk("."):
+                for filename in subdir_file_list:
+                    new_name = get_fixed_filename(filename)
+                    os.rename(filename, new_name)
+            os.chdir("..")
 
-            # Option 1: rename file to new name - in place
-            os.rename(filename, new_name)
 
-            # Option 2: move file to new place, with new name
-            # shutil.move(filename, 'temp/' + new_name)
+        # NOTE: These options won't just work...
+        # they show you ways of renaming and moving files,
+        # but you need to have valid filenames. You can't make a file with
+        # a blank name, and on Windows you can't have files with the same
+        # characters but different case (e.g. a.TXT and A.txt)
+        # So, you need to get valid filenames before you can use these.
 
-            # Processing subdirectories using os.walk()
-
-            # os.chdir('..')  # .. means "up" one directory
-            # for dir_name, subdir_list, file_list in os.walk('.'):
-            #     print("In", dir_name)
-            #     print("\tcontains subdirectories:", subdir_list)
-            #     print("\tand files:", file_list)
+        # Option 2: move file to new place, with new name
+        # shutil.move(filename, 'temp/' + new_name)
 
 
 def get_fixed_filename(filename):
@@ -90,7 +86,7 @@ def capitalise_first_letters_of_words(string):
     """
     Capitalise the first letters of words in string.
     Assumes that the start of words are either the first character in the string or characters that immediately follow
-    a non-letter (e.g. whitespace, or a symbol like an underscore or bracket)
+    a non-letter (e.g. whitespace, or a symbol like an underscore or bracket) other than apostrophes.
     """
 
     # Capitalise the first character and any characters following underscores.
@@ -99,7 +95,7 @@ def capitalise_first_letters_of_words(string):
     for letter_pos, letter in enumerate(string):
         if letter_pos != 0:
             previous_letter = string[letter_pos - 1]
-        if previous_letter not in ALL_LETTERS:
+        if (previous_letter not in ALL_LETTERS and previous_letter != "'") or (letter_pos == 0):
             letter = letter.upper()
         new_string += letter
     return new_string
